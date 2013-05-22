@@ -20,7 +20,8 @@
 					<g:render template="coursePartForm" />
 
 					<div class="form-actions">
-						<g:submitButton name="save" class="btn btn-primary" value="Save" />
+						<g:submitButton name="save" class="btn btn-primary" value="Bewaren" />
+						<g:link class="btn" controller="coursePart" action="list" id="${coursePartInstance.course.id}"><g:message code="default.button.cancel.label" default="Annuleren" /></g:link>
 					</div>
 				</g:form>
 			</div>

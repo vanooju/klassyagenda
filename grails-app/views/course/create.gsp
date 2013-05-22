@@ -11,9 +11,10 @@
 				<g:form action="save">
 					<g:render template="form" />
 					<div class="control-group">
-						<div class="controls">
+						<div class="form-actions">
 							<g:submitButton class="btn btn-primary" name="save"
-								value="${message(code: 'default.button.create.label', default: 'Create')}" />
+								value="${message(code: 'default.button.create.label', default: 'Aanmaken')}" />
+							<g:link class="btn" controller="course" action="list"><g:message code="default.button.cancel.label" default="Annuleren" /></g:link> 								
 						</div>
 					</div>
 				</g:form>
