@@ -29,7 +29,7 @@
 				<p>
 
 					<g:link controller="coursePart" action="create"
-						update="coursepart-form" id="${courseInstance.id}">Nieuw vakonderdeel</g:link>
+						update="coursepart-form" params="['course.id': courseInstance.id]">Nieuw vakonderdeel</g:link>
 				</p>
 
 				<div id="coursePartPagination">

@@ -21,7 +21,7 @@ class CoursePartController {
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'coursePart.label', default: 'Vakonderdeel'), coursePartInstance.name])
 		flash.coursePartId = coursePartInstance.id
-        redirect(action: "list", controller: "course", course: coursePartInstance.course)
+        redirect(action: "list", controller: "coursePart", id: coursePartInstance.course.id)
     }
 
     def show(Long id) {
@@ -73,7 +73,7 @@ class CoursePartController {
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'coursePart.label', default: 'Vakonderdeel'), coursePartInstance.name])
 		flash.coursePartId = coursePartInstance.id
-        redirect(action: "list", controller: "course")
+        redirect(action: "list", controller: "coursePart", id: coursePartInstance.course.id)
     }
 
     def delete(Long id) {
