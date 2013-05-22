@@ -1,0 +1,68 @@
+@font-face {
+	font-family: CallMeMaybe;
+	src: url('CallMeMaybe.ttf');
+}
+
+body {
+	padding-top: 60px;
+	//background: #ffffff url('../images/paper.png') repeat right fixed;
+	position: relative;
+	display: block;
+}
+
+body.nonav {
+	//background: #ffffff url('../images/splat-blue.png') no-repeat top center;
+	//background-size: cover;
+}
+
+#loginForm {
+	//font-family: 'ArchitectsDaughter';
+	//position: relative;
+	margin: auto auto;
+	//top: 120px;
+	//height: 450px;
+	//width: 600px;
+	//background: #ffffff url('../images/paper1.jpg') no-repeat top center;
+	border: 1px solid black;
+	//color: white;
+}
+
+.required-indicator {
+	color: red;
+}
+
+hr {
+	color: black;
+}
+
+h2 i {
+	vertical-align: middle;
+}
+
+td.schedule-cell {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	text-align: center;
+}
+
+td.schedule-slot {
+	border: 1px solid black;
+	font-weight: thick;
+	background-color: #d9edf9;
+	text-align: center;
+}
+
+th.schedule {
+	border: 1px solid black;
+	background-color: #d9edf9;
+}
+
+table.schedule {
+	background-color: lightgrey;
+}
+
+.brand {
+	font-family: 'CallMeMaybe';
+	font-size: 4em;
+}
+

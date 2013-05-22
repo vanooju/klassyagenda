@@ -1,0 +1,1 @@
+<p class="text-warning">Wil u echt de les <strong>${it.title}</strong> van <strong>${it.beginHour}</strong> tot <strong>${it.endHour}</strong> verwijderen?</p>
