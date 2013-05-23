@@ -155,8 +155,9 @@ grails.plugins.springsecurity.securityConfigType = "Annotation"
 grails.resources.modules = {
         'agenda-less-style' {
 		  dependsOn 'bootstrap'
-          resource url:[dir: 'less', file: 'agenda-style.less'], attrs:[rel: "stylesheet/less", type:'css']
-		  resource url:[dir: 'css', file: 'bootstrap-extension.css'], attrs:[rel: 'stylesheet', type:'css']
+          resource url:[dir: 'less', file: 'agenda-style.less'], attrs:[rel: "stylesheet/less", type:'css', media:'screen']
+		  resource url:[dir: 'css', file: 'bootstrap-extension.css'], attrs:[rel: 'stylesheet', type:'css', media:'screen']
+		  resource url:[dir: 'css', file: 'print.css'], attrs:[rel: 'stylesheet', type:'css', media:'print']
 		  resource url:[dir: 'js', file: 'bootbox.js']
         }
 }

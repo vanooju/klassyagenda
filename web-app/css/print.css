@@ -1,0 +1,33 @@
+.navbar, #schoolday-overview-table, .modal, .form, .datepicker {
+	display: none;
+}
+
+body {
+	font-family: arial, verdana;
+}
+
+h4 {
+	font-size: 2em;
+	text-align: left;
+	margin: auto;
+}
+
+h2 {
+	border-bottom: 1px solid black;
+}
+
+.lead {
+	font-size: 1.5em;
+}
+
+.title-field {
+	display: inline-block;
+	margin-top: 1em;
+}
+
+.content-field {
+}
+
+.schoolday-date { 
+	text-align: left;
+}

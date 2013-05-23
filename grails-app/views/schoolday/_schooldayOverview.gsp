@@ -23,14 +23,15 @@
 	</script>
 </head>
 <body>
-	<h4 style="text-align: center;">
+	<div class="noprint">
+	<h4 class="schoolday-date">
 		${selectedDate.format("EEEE dd/MM/yyyy")}
 		<a href="#" title="Datum kiezen" id="datepicker"
 			data-date="${selectedDate}" data-date-format="dd/mm/yyyy" class="btn" style="vertical-align: text-bottom;"><i
 			class="icon-calendar"></i></a>
 	</h4>
 	<g:if test="${schooldayInstance}">
-		<table class="table table-condensed">
+		<table class="table table-condensed" id="schoolday-overview-table">
 			<g:each in="${schooldayInstance?.hours}" var="hour" status="i">
 				<tr
 					class="${hourInstance?.beginSlot?.slotIndex == hour?.beginSlot?.slotIndex ? "info" : ""}">
@@ -127,5 +128,6 @@
 			type="hidden" value="${selectedUser?.id ?: session.user.id}"
 			name="userid" />
 	</form>
+	</div>
 </body>
 </html>

@@ -43,10 +43,10 @@
 			<g:if
 				test="${it.schoolday.user.enabledFields.contains('objectives')}">
 				<div class="row">
-					<div class="span3" style="text-align: right">
+					<div class="span3 title-field" style="text-align: right">
 						<strong>Doelstellingen</strong>
 					</div>
-					<div class="span9 ${it.objectives == '' ? 'muted' : ''}">
+					<div class="span9 ${it.objectives == '' ? 'muted' : ''} content-field">
 						${it.objectives.replaceAll("\n", "<br />") ?: "Niet ingevuld"}
 					</div>
 				</div>
@@ -54,10 +54,10 @@
 			<g:if
 				test="${it.schoolday.user.enabledFields.contains('descriptionBegin')}">
 				<div class="row">
-					<div class="span3" style="text-align: right">
+					<div class="span3 title-field" style="text-align: right">
 						<strong>Lesverloop - Begin</strong>
 					</div>
-					<div class="span8 ${it.descriptionBegin == '' ? 'muted' : ''}">
+					<div class="span8 ${it.descriptionBegin == '' ? 'muted' : ''} content-field">
 						${it.descriptionBegin.replaceAll("\n", "<br />") ?: "Niet ingevuld"}
 					</div>
 				</div>
@@ -66,10 +66,10 @@
 			<g:if
 				test="${it.schoolday.user.enabledFields.contains('descriptionMiddle')}">
 				<div class="row">
-					<div class="span3" style="text-align: right">
+					<div class="span3 title-field" style="text-align: right">
 						<strong>Lesverloop</strong>
 					</div>
-					<div class="span9 ${it.descriptionMiddle == '' ? 'muted' : ''}">
+					<div class="span9 ${it.descriptionMiddle == '' ? 'muted' : ''} content-field">
 						${it.descriptionMiddle.replaceAll("\n", "<br />") ?: "Niet ingevuld"}
 					</div>
 				</div>
@@ -78,10 +78,10 @@
 			<g:if
 				test="${it.schoolday.user.enabledFields.contains('descriptionEnd')}">
 				<div class="row">
-					<div class="span3" style="text-align: right">
+					<div class="span3 title-field" style="text-align: right">
 						<strong>Lesverloop - Einde</strong>
 					</div>
-					<div class="span9 ${it.descriptionEnd == '' ? 'muted' : ''}">
+					<div class="span9 ${it.descriptionEnd == '' ? 'muted' : ''} content-field">
 						${it.descriptionEnd.replaceAll("\n", "<br />") ?: "Niet ingevuld"}
 					</div>
 				</div>
@@ -89,10 +89,10 @@
 
 			<g:if test="${it.schoolday.user.enabledFields.contains('media')}">
 				<div class="row">
-					<div class="span3" style="text-align: right">
+					<div class="span3 title-field" style="text-align: right">
 						<strong>Media</strong>
 					</div>
-					<div class="span9 ${it.media == '' ? 'muted' : ''}">
+					<div class="span9 ${it.media == '' ? 'muted' : ''} content-field">
 						${it.media.replaceAll("\n", "<br />") ?: "Niet ingevuld"}
 					</div>
 				</div>
@@ -171,10 +171,10 @@
 			${it.subject}
 		</h2>
 		<div class="row">
-			<div class="span3" style="text-align: right">
+			<div class="span3 title-field" style="text-align: right">
 				<strong>Beschrijving</strong>
 			</div>
-			<div class="span9 ${it.description == '' ? 'muted' : ''}">
+			<div class="span9 ${it.description == '' ? 'muted' : ''} content-field">
 				${it.description.replaceAll("\n", "<br />") ?: "Niet ingevuld"}
 			</div>
 		</div>
