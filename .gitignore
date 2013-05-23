@@ -17,3 +17,4 @@ web-app/WEB-INF/tld/fmt.tld
 /.link_to_grails_plugins
 /.link_to_grails_plugins
 /database
+/.DS_Store
