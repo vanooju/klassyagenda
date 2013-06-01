@@ -1,9 +1,7 @@
 package be.agenda
 
-import grails.test.mixin.*
 import grails.test.mixin.support.*
 
-import org.junit.*
 import org.springframework.security.core.userdetails.User
 
 /**

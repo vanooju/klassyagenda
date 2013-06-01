@@ -13,6 +13,15 @@
 	</g:if>
 
 	<div class="control-group">
+		<g:select name="selectedUser"
+			from="${sharedUsers}"
+			optionKey="id" optionValue="displayName"
+			value="${selectedUser}"
+			class="input-xlarge"
+			id="searchModal-user" />
+	</div>
+
+	<div class="control-group">
 		<g:select name="selectedSchedule"
 			from="${Schedule.findAllByUser(session.user, [sort:'beginYear', order:'desc'])}"
 			optionKey="id" optionValue="schoolyear"

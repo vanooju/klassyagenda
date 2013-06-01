@@ -2,8 +2,6 @@ package be.agenda
 
 
 
-import org.junit.*
-import grails.test.mixin.*
 
 @TestFor(SchoolController)
 @Mock(School)

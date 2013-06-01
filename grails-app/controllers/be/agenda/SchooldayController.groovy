@@ -255,7 +255,12 @@ class SchooldayController {
 			hourIndex = params.int('hourIndex')
 			hourInstance = new LessonHour(schoolday.hours.find{it.beginSlot.slotIndex == hourIndex }.properties)
 		}
-		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user])
+		
+		def sharedUsers = []
+		sharedUsers.addAll(session.user.sharedUsers)
+		sharedUsers.add(0, session.user)
+		
+		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user, sharedUsers: sharedUsers])
 	}
 	
 	def updateEndSlot(Date date) {

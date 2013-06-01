@@ -13,7 +13,7 @@ class ApplicationUser {
 	
 	static hasOne = [ school: School ]
 	
-	static hasMany = [enabledFields: String]
+	static hasMany = [enabledFields: String, sharedUsers: ApplicationUser]
 
 	String username
 	String password
@@ -37,6 +37,7 @@ class ApplicationUser {
 
 	static mapping = {
 		password column: '`password`'
+		sharedUsers lazy: false
 	}
 
 	Set<Role> getAuthorities() {
@@ -67,5 +68,9 @@ class ApplicationUser {
 		if (! other instanceof ApplicationUser) return false
 		
 		other.id == this.id
+	}
+	
+	String getDisplayName() {
+		"${firstName} ${lastName}"
 	}
 }

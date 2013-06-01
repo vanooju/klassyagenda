@@ -23,9 +23,15 @@ class LessonController {
 			selectedSchedule = params.selectedSchedule ? Schedule.get(params.selectedSchedule) : null
 		}
 		
+		def selectedUser = ApplicationUser.get(params.selectedUser)
+		
 		if (request.method == 'GET') {
 			log.info("Showing lesson search form.")
+			def sharedUsers = []
+			sharedUsers.addAll(session.user.sharedUsers)
+			sharedUsers.add(0, session.user)
 			[	
+				sharedUsers: sharedUsers,
 				selectedCourse: selectedCourse, 
 				selectedCoursePart: selectedCoursePart,
 				subject: params.subject,
@@ -48,11 +54,11 @@ class LessonController {
 			}*/
 			def searchResult = null
 			params.reload = true
-			params.max = 1000
+			params.max = 100
 			params.sort = '$/LessonHour/schoolday/id'
 			params.order = "desc"
-			println "schedule: ${selectedSchedule?.id}"
 			searchResult = LessonHour.search({
+				must(term('$/LessonHour/schoolday/user/id', selectedUser.id))
 				if (selectedSchedule) { must(term('$/LessonHour/schoolday/schedule/id', selectedSchedule?.id)) }
 				if (selectedCourse) { must(term('$/LessonHour/course/id', selectedCourse?.id)) }
 				if (selectedCoursePart) { must(term('$/LessonHour/coursePart/id', selectedCoursePart?.id)) }

@@ -143,4 +143,34 @@ class UserController {
 		
 		[selectedUser: user]
 	}
+	
+	def search(String name) {
+		def results = ApplicationUser.withCriteria {
+			like("firstName", "%${name}%")
+			notEqual("id", session.user.id)
+		}
+		[results:results]
+	}
+	
+	def startShare(Long id) {
+		def user = ApplicationUser.get(id);
+		println "Start sharing with ${user.firstName} ${user.lastName}"
+		
+		session.user.addToSharedUsers(user)
+		
+		session.user = session.user.merge()
+		
+		render(template: 'share', bean: user)
+	}
+	
+	def stopShare(Long id) {
+		def user = ApplicationUser.get(id)
+		println "Stop sharing with ${user.firstName} ${user.lastName}"
+
+		session.user.removeFromSharedUsers(user)
+		
+		session.user = session.user.merge()
+		
+		render(template: 'share', bean: user)		
+	}
 }
