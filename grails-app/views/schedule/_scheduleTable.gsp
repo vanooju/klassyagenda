@@ -32,8 +32,6 @@
 					${slot}
 				</td>
 				<g:each in="${scheduleInstance.days}" var="day">
-
-
 					<td class="schedule-cell"
 						style="${day.hourForSlot(slot)?.beginSlot?.slotIndex == slot?.slotIndex ? 'border-top: 1px solid black;' : ''} ${day.hourForSlot(slot)?.endSlot?.slotIndex == slot?.slotIndex ? 'border-bottom: 1px solid black;' : ''} ${day.hourForSlot(slot) ? 'background-color: #ffffe3;' : ''}">
 						<g:if
@@ -52,12 +50,16 @@
 		<tr class="info">
 			<td />
 			<g:each in="${scheduleInstance.days}" var="day">
-				<td style="text-align: center"><g:link action="create"
-						class="btn btn-mini btn-primary"
-						params="['day.id': day.id, scheduleId: scheduleInstance.id]">
-						<i class="icon-plus-sign icon-white"></i>
-						<g:message code="add.label" />
-					</g:link></td>
+				<td style="text-align: center">
+					<g:if test="${day.countAvailableSlots() > 0}">
+						<g:link action="create"
+							class="btn btn-mini btn-primary"
+							params="['day.id': day.id, scheduleId: scheduleInstance.id]">
+							<i class="icon-plus-sign icon-white"></i>
+							<g:message code="add.label" />
+						</g:link>
+					</g:if>
+				</td>
 			</g:each>
 		</tr>
 	</tbody>

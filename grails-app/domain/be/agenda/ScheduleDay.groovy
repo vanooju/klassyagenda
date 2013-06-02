@@ -21,6 +21,9 @@ class ScheduleDay {
 	List availableSlots(ScheduleHour scheduleHour) {
 		def slots = new ArrayList()
 		slots.addAll(schedule.slots)
+		if (slots.size() == 0) {
+			return slots
+		}
 		hours.each() {
 			if (it != scheduleHour) {
 				def beginSlotIndex = it.beginSlot.slotIndex
@@ -35,10 +38,17 @@ class ScheduleDay {
 				}
 			}
 		}
-		return slots
+		slots
+	}
+	
+	int countAvailableSlots() {
+		availableSlots(null).size()
 	}
 	
 	List appropriateEndSlotsFor(Slot beginSlot, ScheduleHour scheduleHour) {
+		if (beginSlot == null) {
+			return new ArrayList()
+		}
 		def slots = schedule.slots.grep( { it.slotIndex >= beginSlot.slotIndex} )
 		def endSlots = new ArrayList()
 		if (slots.size() == 1) { return slots }
