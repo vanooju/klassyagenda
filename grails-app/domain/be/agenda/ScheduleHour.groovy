@@ -10,6 +10,7 @@ class ScheduleHour extends Hour {
 	static belongsTo = [day:ScheduleDay]
 	
 	Course course
+	int grade
 	
 	ScheduleHour(ScheduleDay day) {
 		this.day = day

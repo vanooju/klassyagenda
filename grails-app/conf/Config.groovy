@@ -110,6 +110,8 @@ environments {
     }
     test {
         grails.logging.jul.usebridge = true
+		disable.auto.recompile=false
+		grails.gsp.enable.reload=true
     }
     production {
         grails.logging.jul.usebridge = false

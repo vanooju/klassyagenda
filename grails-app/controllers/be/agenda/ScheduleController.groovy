@@ -10,6 +10,8 @@ class ScheduleController {
 	
 	static defaultAction = "list"
 	
+	def scheduleService
+	
 	def list() { 
 		def schedule = null
 		if (params.scheduleId) {
@@ -37,6 +39,11 @@ class ScheduleController {
 		scheduleHourInstance.beginSlot = scheduleHourInstance.day.availableSlots()[0]
 		scheduleHourInstance.endSlot = scheduleHourInstance.day.availableSlots()[0]
 		
+		if (!scheduleHourInstance.beginSlot) {
+			flash.message = 'Geen lesuren meer beschikbaar.'
+			redirect(action: 'list')
+		}
+		
 		[scheduleHourInstance:scheduleHourInstance, scheduleId: params.scheduleId, beginSlots:scheduleHourInstance.day.availableSlots(), endSlots: scheduleHourInstance.day.appropriateEndSlotsFor(scheduleHourInstance.beginSlot)]
 	}
 	
@@ -46,7 +53,7 @@ class ScheduleController {
 			return
 		}	
 		
-		def schedule = new Schedule(Integer.valueOf(params.beginYear), session.user);
+		def schedule = scheduleService.createSchedule(Integer.valueOf(params.beginYear), session.user, params.int('grade'))
 		if (!schedule.save()) {
 			render(view: "createSchedule", model: [scheduleInstance: schedule])
 			return

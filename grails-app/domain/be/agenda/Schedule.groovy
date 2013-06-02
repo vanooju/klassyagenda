@@ -22,13 +22,16 @@ class Schedule {
 	
 	static constraints = {
 		beginYear unique: 'user'
+		beginYear blank: false
+		grade blank: false
 	}
 	
 	int beginYear
 	List<Slot> slots
 	List<ScheduleDay> days
+	int grade
 	
-	public Schedule(int beginYear, ApplicationUser user) {
+	/*public Schedule(int beginYear, ApplicationUser user) {
 		this.beginYear = beginYear
 		this.user = user
 		days = [new ScheduleDay(dayOfWeek: Calendar.MONDAY, schedule:this),
@@ -48,7 +51,7 @@ class Schedule {
 				 new Slot(9, "13:50", "14:15"),
 				 new Slot(10, "14:30", "14:55"),
 				 new Slot(11, "14:55", "15:25")]
-	}	
+	}*/	
 	
 	static Schedule findByDateAndUser(Date date, ApplicationUser user) {
 		Calendar dateCalendar = new GregorianCalendar(date.getAt(Calendar.YEAR), date.getAt(Calendar.MONTH), date.getAt(Calendar.DAY_OF_MONTH)) 

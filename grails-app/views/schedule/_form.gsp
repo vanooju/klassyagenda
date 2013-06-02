@@ -1,5 +1,19 @@
 <%@ page import="be.agenda.Course" %>
 
+<g:if test="${scheduleHourInstance.day.schedule.grade != -1}">
+	<g:hiddenField name="grade" value="-1" />	
+</g:if>
+<g:else>
+	<div class="control-group ${hasErrors(bean:scheduleHourInstance, field:'grade', 'error')}">
+		<label for="grade">Leerjaar</label>
+		<div class="controls">
+			<g:select name="grade"
+	       			  from="${1..6}"
+	       			  value="${scheduleHourInstance.grade}" />
+	  	</div>
+	</div>
+</g:else>
+
 <div class="control-group ${hasErrors(bean:scheduleHourInstance, field:'beginSlot', 'error')}">
 	<label for="beginSlot.id"><g:message code="hour.beginHour.label" /></label>
 	<div class="controls">
@@ -61,7 +75,7 @@
 			<button class="btn open-course-dialog" type="button" 
 				        data-toggle="modal" data-target="#courseModal" 
 				        id="show-course-modal-link"
-				        data-remote="${createLink(controller: 'course', action: 'showCourseModalForm')}">Add Course</button>
+				        data-remote="${createLink(controller: 'course', action: 'showCourseModalForm')}">Nieuw vak</button>
 		</div>
 		<g:hasErrors bean="${scheduleHourInstance}" field="course">
 			<span class="help-inline">

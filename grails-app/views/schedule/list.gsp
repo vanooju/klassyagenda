@@ -33,9 +33,9 @@
 					</div>
 				</g:if>
 				<g:else>
-			Je hebt nog geen schooljaar aangemaakt. Klik op <strong>Nieuw
-						schooljaar</strong> om een schooljaar aan te maken.
-		</g:else>
+					Je hebt nog geen schooljaar aangemaakt. Klik op <strong>Nieuw
+					schooljaar</strong> om een schooljaar aan te maken.
+				</g:else>
 			</div>
 		</div>
 	</div>
