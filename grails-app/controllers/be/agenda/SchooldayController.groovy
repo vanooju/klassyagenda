@@ -232,8 +232,20 @@ class SchooldayController {
 	def create() {
 		def date = params.date ?: new Date()
 		def schoolday = Schoolday.findByDateAndUser(date, session.user) ?: createSchoolday(date, session.user)
+		def hourIndex = params.int('hourIndex')
+		
+		def hourInstance = createHourInstance(date, hourIndex)
+		
+		def sharedUsers = []
+		sharedUsers.addAll(session.user.sharedUsers)
+		sharedUsers.add(0, session.user)
+		
+		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user, sharedUsers: sharedUsers])
+	}
+	
+	private createHourInstance(Date date, int hourIndex) {
+		def schoolday = Schoolday.findByDateAndUser(date, session.user) ?: createSchoolday(date, session.user)
 		def hourInstance = null
-		def hourIndex = null
 		if (params.copylesson) {
 			log.debug "Nieuwe les aanmaken op basis van bestaande les ${params.copylesson}."
 			hourIndex = params.int('hourIndex')
@@ -256,11 +268,7 @@ class SchooldayController {
 			hourInstance = new LessonHour(schoolday.hours.find{it.beginSlot.slotIndex == hourIndex }.properties)
 		}
 		
-		def sharedUsers = []
-		sharedUsers.addAll(session.user.sharedUsers)
-		sharedUsers.add(0, session.user)
-		
-		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user, sharedUsers: sharedUsers])
+		hourInstance
 	}
 	
 	def updateEndSlot(Date date) {
@@ -348,5 +356,30 @@ class SchooldayController {
 			return
 		}
 	}
+	
+	def search() {
+		def hourInstance
+		if (params.id) {
+			def id = params.int(id)	
+			
+			hourInstance = SchooldayHour.get(id)
+		} else {
+			def date = params.date
+			def hourIndex = params.int('hourIndex')
+			
+			hourInstance = createHourInstance(date, hourIndex)
+		}
+		
+		def course = hourInstance.course
+		def coursePart = hourInstance.coursePart
+		def sharedUsers = [session.user] + session.user.sharedUsers
+		
+		[selectedCourse: course, selectedCoursePart: coursePart, sharedUsers: sharedUsers, selectedUser: session.user]
+	}
+	
+	def courses() {
+		def user = ApplicationUser.get(params.id)
+		[courses: Course.findByUser(user)]
+	} 
 	
 }

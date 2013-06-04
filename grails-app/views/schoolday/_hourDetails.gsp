@@ -9,6 +9,9 @@
 					<g:link class="btn" action="edit" id="${it.id}" title="Bewerken">
 						<i class="icon-edit"></i>
 					</g:link>
+					<g:link class="btn" action="search" id="${it.id}" title="Bestaande les zoeken">
+						<i class="icon-search"></i>
+					</g:link>
 				</g:if>
 				<g:else>
 					<a class="btn btn-danger open-confirm-dialog-index-date" href="#"
@@ -22,6 +25,10 @@
 						params="[hourIndex: it.beginSlot?.slotIndex, date_year: it.schoolday.date.format('yyyy'), date_month: it.schoolday.date.format('MM'), date_day: it.schoolday.date.format('dd'), date: 'date.struct']"
 						title="Bewerken">
 						<i class="icon-edit"></i>
+					</g:link>
+					<g:link class="btn" action="search" title="Bestaande les zoeken"
+						params="[hourIndex: it.beginSlot?.slotIndex, date_year: it.schoolday.date.format('yyyy'), date_month: it.schoolday.date.format('MM'), date_day: it.schoolday.date.format('dd'), date: 'date.struct']">
+						<i class="icon-search"></i>
 					</g:link>
 				</g:else>
 			</g:if>
@@ -113,6 +120,9 @@
 					<g:link class="btn" action="edit" id="${it.id}" title="Bewerken">
 						<i class="icon-edit"></i>
 					</g:link>
+					<g:link class="btn" action="search" id="${it.id}" title="Bestaande les zoeken">
+						<i class="icon-search"></i>
+					</g:link>
 				</g:if>
 				<g:else>
 					<a class="btn btn-danger open-confirm-dialog-index-date" href="#"
@@ -126,6 +136,10 @@
 						params="[hourIndex: it.beginSlot?.slotIndex, date_year: it.schoolday.date.format('yyyy'), date_month: it.schoolday.date.format('MM'), date_day: it.schoolday.date.format('dd'), date: 'date.struct']"
 						title="Bewerken">
 						<i class="icon-edit"></i>
+					</g:link>
+					<g:link class="btn" action="search" title="Bestaande les zoeken"
+						params="[hourIndex: it.beginSlot?.slotIndex, date_year: it.schoolday.date.format('yyyy'), date_month: it.schoolday.date.format('MM'), date_day: it.schoolday.date.format('dd'), date: 'date.struct']">
+						<i class="icon-search"></i>
 					</g:link>
 				</g:else>
 			</g:if>
@@ -148,6 +162,9 @@
 						class="icon-trash icon-white"></i></a>
 					<g:link class="btn" action="edit" id="${it.id}" title="Bewerken">
 						<i class="icon-edit"></i>
+					</g:link>
+					<g:link class="btn" action="search" id="${it.id}" title="Bestaande les zoeken">
+						<i class="icon-search"></i>
 					</g:link>
 				</g:if>
 				<g:else>

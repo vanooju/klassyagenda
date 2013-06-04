@@ -1,5 +1,7 @@
 package be.agenda
 
+import grails.test.mixin.*
+
 
 
 
