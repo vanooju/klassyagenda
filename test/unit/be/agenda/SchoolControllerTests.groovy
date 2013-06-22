@@ -3,6 +3,8 @@ package be.agenda
 
 
 import org.junit.*
+
+import be.agenda.controllers.SchoolController;
 import grails.test.mixin.*
 
 @TestFor(SchoolController)

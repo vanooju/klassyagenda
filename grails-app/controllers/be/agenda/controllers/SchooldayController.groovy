@@ -1,10 +1,17 @@
-package be.agenda
-
-import java.util.Calendar
-import java.util.Date
-import java.util.GregorianCalendar
+package be.agenda.controllers
 
 import org.springframework.dao.DataIntegrityViolationException
+
+import be.agenda.ActivityHour
+import be.agenda.ApplicationUser
+import be.agenda.Course
+import be.agenda.CoursePart
+import be.agenda.Hour
+import be.agenda.LessonHour
+import be.agenda.LessonPlaceHolderHour
+import be.agenda.Schedule
+import be.agenda.Schoolday
+import be.agenda.Slot
 
 class SchooldayController {
 	

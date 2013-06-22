@@ -7,6 +7,8 @@ import grails.test.mixin.support.*
 
 import org.junit.*
 
+import be.agenda.controllers.SchooldayController;
+
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
  */

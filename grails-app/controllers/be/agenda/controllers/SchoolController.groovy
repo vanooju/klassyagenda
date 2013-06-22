@@ -1,8 +1,10 @@
-package be.agenda
+package be.agenda.controllers
 
 import grails.plugins.springsecurity.Secured;
 
 import org.springframework.dao.DataIntegrityViolationException
+
+import be.agenda.School;
 
 
 @Secured(['ROLE_ADMIN'])

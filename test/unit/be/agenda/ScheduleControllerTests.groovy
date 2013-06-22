@@ -6,6 +6,8 @@ import grails.test.mixin.support.*
 import org.junit.*
 import org.springframework.security.core.userdetails.User
 
+import be.agenda.controllers.ScheduleController;
+
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
  */
