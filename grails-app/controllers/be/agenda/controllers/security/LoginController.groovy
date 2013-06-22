@@ -1,3 +1,4 @@
+package be.agenda.controllers.security
 import grails.converters.JSON
 
 import javax.servlet.http.HttpServletResponse
