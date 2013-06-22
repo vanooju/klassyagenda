@@ -1,4 +1,4 @@
-package be.agenda
+package be.agenda.domain
 
 import java.util.List;
 

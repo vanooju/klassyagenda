@@ -5,7 +5,6 @@
 
 body {
 	padding-top: 60px;
-	//background: #ffffff url('../images/paper.png') repeat right fixed;
 	position: relative;
 	display: block;
 }
@@ -22,7 +21,6 @@ body.nonav {
 	//top: 120px;
 	//height: 450px;
 	//width: 600px;
-	//background: #ffffff url('../images/paper1.jpg') no-repeat top center;
 	border: 1px solid black;
 	//color: white;
 }

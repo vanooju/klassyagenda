@@ -7,6 +7,12 @@ import org.junit.*
 import org.springframework.security.core.userdetails.User
 
 import be.agenda.controllers.ScheduleController;
+import be.agenda.domain.ApplicationUser;
+import be.agenda.domain.Course;
+import be.agenda.domain.Schedule;
+import be.agenda.domain.ScheduleDay;
+import be.agenda.domain.ScheduleHour;
+import be.agenda.domain.Slot;
 
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions

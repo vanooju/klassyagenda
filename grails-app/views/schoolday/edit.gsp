@@ -1,6 +1,6 @@
-<%@ page import="be.agenda.LessonHour"%>
-<%@ page import="be.agenda.LessonPlaceHolderHour"%>
-<%@ page import="be.agenda.ActivityHour"%>
+<%@ page import="be.agenda.domain.LessonHour"%>
+<%@ page import="be.agenda.domain.LessonPlaceHolderHour"%>
+<%@ page import="be.agenda.domain.ActivityHour"%>
 <!doctype html>
 <html>
 <head>

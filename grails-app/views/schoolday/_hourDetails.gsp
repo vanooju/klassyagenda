@@ -1,4 +1,4 @@
-<g:if test="${it instanceof be.agenda.LessonHour}">
+<g:if test="${it instanceof be.agenda.domain.LessonHour}">
 	<section id="hour_${it?.beginSlot.slotIndex}">
 		<h2>
 			<g:if test="${session.user == it.schoolday.user}">
@@ -102,7 +102,7 @@
 </g:if>
 
 <g:if
-	test="${it instanceof be.agenda.LessonPlaceHolderHour && !(it instanceof be.agenda.LessonHour)}">
+	test="${it instanceof be.agenda.domain.LessonPlaceHolderHour && !(it instanceof be.agenda.domain.LessonHour)}">
 	<section id="hour_${it?.beginSlot.slotIndex}">
 		<h2>
 			<g:if test="${session.user == it.schoolday.user}">
@@ -138,7 +138,7 @@
 		</h2>
 	</section>
 </g:if>
-<g:if test="${it instanceof be.agenda.ActivityHour}">
+<g:if test="${it instanceof be.agenda.domain.ActivityHour}">
 	<section id="hour_${it?.beginSlot.slotIndex}">
 		<h2>
 			<g:if test="${session.user == it.schoolday.user}">

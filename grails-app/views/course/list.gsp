@@ -1,4 +1,4 @@
-<%@ page import="be.agenda.LessonHour"%>
+<%@ page import="be.agenda.domain.LessonHour"%>
 
 <!DOCTYPE html>
 <html>

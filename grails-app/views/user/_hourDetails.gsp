@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="well" id="${it.id}">
-		<g:if test="${it instanceof be.agenda.LessonHour}">
+		<g:if test="${it instanceof be.agenda.domain.LessonHour}">
 			<div class="row">
 				<div class="span9">
 					<div class="page-header"><h1>${it.beginHour} - ${it.endHour}: ${it.title} <small>${it.coursePart.name}</small></h1>
@@ -36,7 +36,7 @@
 				<div class="span6">${it.media}</div>
 			</div>
 		</g:if>
-		<g:if test="${it instanceof be.agenda.LessonPlaceHolderHour && !(it instanceof be.agenda.LessonHour)}">
+		<g:if test="${it instanceof be.agenda.domain.LessonPlaceHolderHour && !(it instanceof be.agenda.domain.LessonHour)}">
 			<div class="row">
 				<div class="span9">
 					<div class="page-header"><h1>${it.beginHour} - ${it.endHour}: ${it.title}</h1></div>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 		</g:if>
-		<g:if test="${it instanceof be.agenda.ActivityHour}">
+		<g:if test="${it instanceof be.agenda.domain.ActivityHour}">
 			<div class="row">
 				<div class="span1"><span class="label">Beschrijving</span></div><div class="span4">${it.description}</div>
 			</div>

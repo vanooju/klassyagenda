@@ -1,4 +1,4 @@
-<%@ page import="be.agenda.Role" %>
+<%@ page import="be.agenda.domain.Role" %>
 
 <div
 	class="control-group ${hasErrors(bean:it,field:'lastName','error')}">
@@ -57,7 +57,7 @@
 	<div class="control-label">School</div>
 	<div class="controls">
 		<g:select class="input-xlarge" name="school.id"
-			from="${be.agenda.School.findAll()}" optionKey="id"
+			from="${be.agenda.domain.School.findAll()}" optionKey="id"
 			optionValue="name" />
 	</div>
 </div>

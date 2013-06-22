@@ -1,6 +1,6 @@
 
-<%@ page import="be.agenda.School"%>
-<%@ page import="be.agenda.Role"%>
+<%@ page import="be.agenda.domain.School"%>
+<%@ page import="be.agenda.domain.Role"%>
 <!doctype html>
 <html>
 <head>

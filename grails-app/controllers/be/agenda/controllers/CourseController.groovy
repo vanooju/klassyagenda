@@ -2,8 +2,8 @@ package be.agenda.controllers
 
 import org.springframework.dao.DataIntegrityViolationException
 
-import be.agenda.Course;
-import be.agenda.CoursePart;
+import be.agenda.domain.Course
+import be.agenda.domain.CoursePart
 
 class CourseController {
 

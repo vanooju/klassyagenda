@@ -1,4 +1,4 @@
-<%@ page import="be.agenda.Course" %>
+<%@ page import="be.agenda.domain.Course" %>
 
 <label for="beginHour">Beginuur</label>	
 <g:if test="$hourInstance.id}">		

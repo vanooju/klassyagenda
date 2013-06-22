@@ -8,6 +8,13 @@ import grails.test.mixin.support.*
 import org.junit.*
 
 import be.agenda.controllers.SchooldayController;
+import be.agenda.domain.ApplicationUser;
+import be.agenda.domain.Course;
+import be.agenda.domain.CoursePart;
+import be.agenda.domain.Hour;
+import be.agenda.domain.LessonHour;
+import be.agenda.domain.Schoolday;
+import be.agenda.domain.Slot;
 
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions

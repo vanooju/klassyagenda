@@ -1,5 +1,5 @@
 <div class="control-group">
-	<label for="beginSlot" class="control-label"><g:message code="be.agenda.Hour.slot.label" /></label>
+	<label for="beginSlot" class="control-label"><g:message code="be.agenda.domain.Hour.slot.label" /></label>
 	<div class="controls form-inline">	
 	
 		<g:if test="${hourInstance.id}">		

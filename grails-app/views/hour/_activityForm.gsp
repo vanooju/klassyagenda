@@ -1,4 +1,4 @@
-<%@ page import="be.agenda.Course" %>
+<%@ page import="be.agenda.domain.Course" %>
 
 <div class="control-group ${hasErrors(bean:hourInstance, field:'beginSlot', 'error')}">
 		<label for="beginHour">Beginuur</label>	

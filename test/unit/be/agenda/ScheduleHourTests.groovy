@@ -6,6 +6,10 @@ import grails.test.mixin.*
 import grails.test.mixin.support.*
 import org.junit.*
 
+import be.agenda.domain.Schedule;
+import be.agenda.domain.ScheduleDay;
+import be.agenda.domain.ScheduleHour;
+
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
  */

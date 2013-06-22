@@ -1,4 +1,4 @@
-<%@ page import="be.agenda.Schedule"%>
+<%@ page import="be.agenda.domain.Schedule"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@
 			
 				<g:form class="form form-horizontal">
 					<g:select name="scheduleId"
-						from="${be.agenda.Schedule.findAllByUser(session.user, [sort:"beginYear"])}"
+						from="${be.agenda.domain.Schedule.findAllByUser(session.user, [sort:"beginYear"])}"
 						optionKey="id" optionValue="schoolyear"
 						value="${scheduleInstance ? scheduleInstance.id : Schedule.current(session.user)}" />
 					<script>

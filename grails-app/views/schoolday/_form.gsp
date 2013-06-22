@@ -1,4 +1,4 @@
-<%@ page import="be.agenda.Schoolday" %>
+<%@ page import="be.agenda.domain.Schoolday" %>
 
 <div class="fieldcontain ${hasErrors(bean: it, field: 'date', 'error')} required">
 	<label for="date">

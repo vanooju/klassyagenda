@@ -1,6 +1,6 @@
-<%@ page import="be.agenda.Course"%>
-<%@ page import="be.agenda.CoursePart"%>
-<%@ page import="be.agenda.Schedule"%>
+<%@ page import="be.agenda.domain.Course"%>
+<%@ page import="be.agenda.domain.CoursePart"%>
+<%@ page import="be.agenda.domain.Schedule"%>
 <html>
 <body>
 	<div class="row-fluid">

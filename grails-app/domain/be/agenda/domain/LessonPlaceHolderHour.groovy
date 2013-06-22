@@ -1,4 +1,4 @@
-package be.agenda
+package be.agenda.domain
 
 class LessonPlaceHolderHour extends SchooldayHour {
 

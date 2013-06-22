@@ -3,8 +3,8 @@ import org.codehaus.groovy.grails.plugins.springsecurity.SecurityRequestHolder
 import org.springframework.dao.OptimisticLockingFailureException
 
 import be.agenda.AgendaUtils
-import be.agenda.ApplicationUser
-import be.agenda.Schedule
+import be.agenda.domain.ApplicationUser
+import be.agenda.domain.Schedule
 
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts

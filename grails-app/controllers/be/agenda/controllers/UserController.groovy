@@ -1,9 +1,9 @@
 package be.agenda.controllers
 
-import be.agenda.ApplicationUser;
-import be.agenda.ApplicationUserRole;
-import be.agenda.Role;
-import be.agenda.Schoolday;
+import be.agenda.domain.ApplicationUser
+import be.agenda.domain.ApplicationUserRole
+import be.agenda.domain.Role
+import be.agenda.domain.Schoolday
 import grails.plugins.springsecurity.Secured
 
 class UserController {

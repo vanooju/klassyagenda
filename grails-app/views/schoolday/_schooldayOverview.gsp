@@ -1,4 +1,4 @@
-<%@ page import="be.agenda.ActivityHour"%>
+<%@ page import="be.agenda.domain.ActivityHour"%>
 <!-- this template expects a Schoolday bean named schooldayInstance -->
 <html>
 <head>

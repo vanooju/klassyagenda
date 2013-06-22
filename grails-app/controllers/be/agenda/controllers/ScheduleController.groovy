@@ -2,11 +2,11 @@ package be.agenda.controllers
 
 import java.util.Iterator;
 
-import be.agenda.Schedule;
-import be.agenda.ScheduleDay;
-import be.agenda.ScheduleHour;
-import be.agenda.Slot;
-import be.agenda.authentication.UserDetails;
+import be.agenda.domain.Schedule
+import be.agenda.domain.ScheduleDay
+import be.agenda.domain.ScheduleHour
+import be.agenda.domain.Slot
+import be.agenda.authentication.UserDetails
 
 import grails.plugins.springsecurity.Secured
 

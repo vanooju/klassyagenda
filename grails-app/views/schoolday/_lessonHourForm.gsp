@@ -1,5 +1,5 @@
-<%@ page import="be.agenda.Course"%>
-<%@ page import="be.agenda.CoursePart"%>
+<%@ page import="be.agenda.domain.Course"%>
+<%@ page import="be.agenda.domain.CoursePart"%>
 
 <div id="hiddenCoursePartOtherTeacher" style="display: none;"></div>
 <div id="newValue" style="display: none;"></div>
@@ -25,7 +25,7 @@
 	</script>
 
 <legend>
-	<g:message code="be.agenda.LessonHour.label" />
+	<g:message code="be.agenda.domain.LessonHour.label" />
 	<g:hasErrors bean="${hourInstance}">
 		<small class="text-error"><g:message
 				code="default.error.message" /></small>
@@ -44,7 +44,7 @@
 <div
 	class="control-group ${hasErrors(bean:hourInstance,field:'course','error')} ${hasErrors(bean:hourInstance,field:'coursePart','error')}">
 	<label for="course" class="control-label"><g:message
-			code="be.agenda.Course.label" /></label>
+			code="be.agenda.domain.Course.label" /></label>
 	<div class="controls form-inline">
 		<div class="input-append">
 			<g:select name="course.id"
@@ -97,7 +97,7 @@
 	<div class="controls">
 		<label class="checkbox inline" style="width: 100%;"> <g:checkBox
 				name="otherTeacher" value="${hourInstance?.otherTeacher}" /> <g:message
-				code="be.agenda.LessonHour.otherTeacher.label" />
+				code="be.agenda.domain.LessonHour.otherTeacher.label" />
 		</label>
 	</div>
 </div>

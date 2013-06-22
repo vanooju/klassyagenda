@@ -1,11 +1,11 @@
 import grails.util.Environment;
-import be.agenda.ApplicationUser
-import be.agenda.ApplicationUserRole
-import be.agenda.Course
-import be.agenda.CoursePart
-import be.agenda.Role
-import be.agenda.School
-import be.agenda.Schoolday
+import be.agenda.domain.ApplicationUser
+import be.agenda.domain.ApplicationUserRole
+import be.agenda.domain.Course
+import be.agenda.domain.CoursePart
+import be.agenda.domain.Role
+import be.agenda.domain.School
+import be.agenda.domain.Schoolday
 
 class BootStrap {
 

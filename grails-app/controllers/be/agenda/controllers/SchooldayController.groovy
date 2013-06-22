@@ -2,16 +2,16 @@ package be.agenda.controllers
 
 import org.springframework.dao.DataIntegrityViolationException
 
-import be.agenda.ActivityHour
-import be.agenda.ApplicationUser
-import be.agenda.Course
-import be.agenda.CoursePart
-import be.agenda.Hour
-import be.agenda.LessonHour
-import be.agenda.LessonPlaceHolderHour
-import be.agenda.Schedule
-import be.agenda.Schoolday
-import be.agenda.Slot
+import be.agenda.domain.ActivityHour
+import be.agenda.domain.ApplicationUser
+import be.agenda.domain.Course
+import be.agenda.domain.CoursePart
+import be.agenda.domain.Hour
+import be.agenda.domain.LessonHour
+import be.agenda.domain.LessonPlaceHolderHour
+import be.agenda.domain.Schedule
+import be.agenda.domain.Schoolday
+import be.agenda.domain.Slot
 
 class SchooldayController {
 	

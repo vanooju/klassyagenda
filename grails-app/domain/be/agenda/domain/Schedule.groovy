@@ -1,8 +1,11 @@
-package be.agenda
+package be.agenda.domain
 
 import java.util.List;
 
 import org.apache.commons.logging.LogFactory
+
+import be.agenda.AgendaUtils;
+import be.agenda.InvalidScheduleException;
 
 class Schedule {
 	

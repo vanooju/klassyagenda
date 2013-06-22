@@ -1,4 +1,4 @@
-<%@ page import="be.agenda.CoursePart" %>
+<%@ page import="be.agenda.domain.CoursePart" %>
 <!doctype html>
 <html>
 	<head>

@@ -2,10 +2,10 @@ package be.agenda.controllers
 
 import org.compass.core.CompassQuery
 
-import be.agenda.Course;
-import be.agenda.CoursePart;
-import be.agenda.LessonHour;
-import be.agenda.Schedule;
+import be.agenda.domain.Course
+import be.agenda.domain.CoursePart
+import be.agenda.domain.LessonHour
+import be.agenda.domain.Schedule
 
 class LessonController {
 	

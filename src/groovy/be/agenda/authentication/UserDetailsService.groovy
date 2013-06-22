@@ -1,6 +1,6 @@
 package be.agenda.authentication
 
-import be.agenda.ApplicationUser
+import be.agenda.domain.ApplicationUser
 import org.codehaus.groovy.grails.plugins.springsecurity.GrailsUser
 import org.codehaus.groovy.grails.plugins.springsecurity.GrailsUserDetailsService
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils

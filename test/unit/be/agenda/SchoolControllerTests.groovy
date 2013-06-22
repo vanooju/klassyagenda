@@ -5,6 +5,7 @@ package be.agenda
 import org.junit.*
 
 import be.agenda.controllers.SchoolController;
+import be.agenda.domain.School;
 import grails.test.mixin.*
 
 @TestFor(SchoolController)
