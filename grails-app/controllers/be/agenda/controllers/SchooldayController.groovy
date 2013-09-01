@@ -72,10 +72,14 @@ class SchooldayController {
     }
 
     def show() {
+		println "params.date = ${params.date}"
+		println "session.date = ${session.date}"
+		println session.date
 		def date = params.date ?: session.date
 		if (!date) {
 			def calendar = new GregorianCalendar()
 			if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+				calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR) + 1)
 				calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
 			}
 			date = calendar.getTime().clearTime()

@@ -65,37 +65,39 @@
 	</sec:ifAnyGranted>
 	<sec:ifAllGranted roles="ROLE_USER">
 		<g:if test="${selectedUser==session.user}">
-			<form name="schoolday" action="saveReminderAndTasks"
-				class="form well">
-				<g:hiddenField name="date_year"
-					value="${schooldayInstance.date.format('yyyy')}" />
-				<g:hiddenField name="date_month"
-					value="${schooldayInstance.date.format('MM')}" />
-				<g:hiddenField name="date_day"
-					value="${schooldayInstance.date.format('dd')}" />
-				<g:hiddenField name="date" value="date.struct" />
-				<g:hiddenField name="id" value="${schooldayInstance.id}" />
-
-				<div class="control-group">
-					<label for="reminder" class="control-label">Niet vergeten</label>
-					<div class="controls">
-						<g:textArea rows="3" name="reminder"
-							value="${schooldayInstance.reminder}" />
+			<g:if test="${schooldayInstance}">
+				<form name="schoolday" action="saveReminderAndTasks"
+					class="form well">
+					<g:hiddenField name="date_year"
+						value="${schooldayInstance.date.format('yyyy')}" />
+					<g:hiddenField name="date_month"
+						value="${schooldayInstance.date.format('MM')}" />
+					<g:hiddenField name="date_day"
+						value="${schooldayInstance.date.format('dd')}" />
+					<g:hiddenField name="date" value="date.struct" />
+					<g:hiddenField name="id" value="${schooldayInstance.id}" />
+	
+					<div class="control-group">
+						<label for="reminder" class="control-label">Niet vergeten</label>
+						<div class="controls">
+							<g:textArea rows="3" name="reminder"
+								value="${schooldayInstance.reminder}" />
+						</div>
 					</div>
-				</div>
-
-				<div class="control-group">
-					<label for="tasks" class="control-label">Taken</label>
-					<div class="controls">
-						<g:textArea rows="3" name="tasks"
-							value="${schooldayInstance.tasks}" />
+	
+					<div class="control-group">
+						<label for="tasks" class="control-label">Taken</label>
+						<div class="controls">
+							<g:textArea rows="3" name="tasks"
+								value="${schooldayInstance.tasks}" />
+						</div>
 					</div>
-				</div>
-
-				<div class="form-actions">
-					<g:submitButton class="btn" name="submit" value="Opslaan" />
-				</div>
-			</form>
+	
+					<div class="form-actions">
+						<g:submitButton class="btn" name="submit" value="Opslaan" />
+					</div>
+				</form>
+			</g:if>
 		</g:if>
 	</sec:ifAllGranted>
 

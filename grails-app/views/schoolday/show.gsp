@@ -25,10 +25,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span3">
-				<g:if test="${schooldayInstance}">
-					<g:render template="schooldayOverview" bean="${schooldayInstance}"
-						var="schooldayInstance" />
-				</g:if>
+				<g:render template="schooldayOverview" bean="${schooldayInstance}" var="schooldayInstance" />
 			</div>
 			<div id="hour-form" class="span9">
 				<g:if test="${flash.message}">

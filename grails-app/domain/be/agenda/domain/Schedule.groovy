@@ -55,8 +55,8 @@ class Schedule {
 	
 	static Schedule findByDateAndUser(Date date, ApplicationUser user) {
 		Calendar dateCalendar = new GregorianCalendar(date.getAt(Calendar.YEAR), date.getAt(Calendar.MONTH), date.getAt(Calendar.DAY_OF_MONTH)) 
-		Calendar firstOfJuly = new GregorianCalendar(date.getAt(Calendar.YEAR), 7, 1)
-		Calendar lastOfAugust = new GregorianCalendar(date.getAt(Calendar.YEAR), 8, 31)
+		Calendar firstOfJuly = new GregorianCalendar(date.getAt(Calendar.YEAR), Calendar.JULY, 1)
+		Calendar lastOfAugust = new GregorianCalendar(date.getAt(Calendar.YEAR), Calendar.AUGUST, 31)
 		if (dateCalendar.before(firstOfJuly)) {
 			Schedule.findByBeginYearAndUser(dateCalendar.get(Calendar.YEAR)-1, user) 
 		} else if (dateCalendar.after(lastOfAugust)) {
