@@ -16,4 +16,13 @@ public class AgendaUtils {
 			return dateCalendar.get(Calendar.YEAR)
 		}
 	}
+	
+	public static Date firstSchooldayAfter(Date date) {
+		Calendar dateCalendar = date.toCalendar()
+		if (dateCalendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || dateCalendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+			dateCalendar.set(Calendar.WEEK_OF_YEAR, dateCalendar.get(Calendar.WEEK_OF_YEAR) + 1)
+			dateCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+		}
+		dateCalendar.getTime()
+	}
 }

@@ -2,6 +2,7 @@ package be.agenda.controllers
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import be.agenda.AgendaUtils;
 import be.agenda.domain.ActivityHour
 import be.agenda.domain.ApplicationUser
 import be.agenda.domain.Course
@@ -93,6 +94,7 @@ class SchooldayController {
 			selectedUser = ApplicationUser.get(session.user.id)
 		}
 		
+		date = AgendaUtils.firstSchooldayAfter(date)
         def schooldayInstance = Schoolday.findByUserAndDate(selectedUser, date)
         if (!schooldayInstance) {
 			if (selectedUser == session.user) {
@@ -337,7 +339,7 @@ class SchooldayController {
 		if (params.id) {
 			schoolday = Schoolday.get(params.id)
 		} else {
-			schoolday = new Schoolday(date:params.date, user:session.user)
+			schoolday = new Schoolday(date:params.date, user:session.user, schedule: Schedule.findByBeginYearAndUser(AgendaUtils.beginYearForDate(params.date), session.user))
 		}
 		schoolday.properties = params
 		schoolday.save()
