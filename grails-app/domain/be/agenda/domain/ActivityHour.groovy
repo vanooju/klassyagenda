@@ -4,8 +4,8 @@ import java.util.List;
 
 class ActivityHour extends SchooldayHour {
 	
-	static mapping = {
-		description length: 1000
+	static mappings = {
+		description length: 2000
 	}
 	
 	String subject
