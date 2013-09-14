@@ -84,7 +84,7 @@
 				<div class="modal-footer">
 					<g:submitToRemote class="btn btn-primary" name="confirm"
 						value="Aanmaken"
-						url="[coursePart: 'schoolday', action: 'addCoursePart']"
+						url="[controller: 'coursePart', action: 'addCoursePart']"
 						update="[success: 'coursePart', failure: 'coursePartFormTemplate']"
 						onSuccess="\$('#coursePartModal').modal('hide')" />
 					<button type="button" class="btn" data-dismiss="modal"

@@ -41,7 +41,7 @@
 					<ul class="dropdown-menu">
 						<li><g:link controller="user" action="edit">Instellingen</g:link></li>
 						<li><g:link controller="user" action="modifyPassword" id="${session.user.id}">Paswoord wijzigen</g:link></li>
-						<li><g:link controller="logout" action="index">Logout</g:link></li>
+						<li><g:link controller="logout" action="index">Afmelden</g:link></li>
 					</ul></li>
 			</ul>
 			<p class="nav pull-right navbar-text"></p>
