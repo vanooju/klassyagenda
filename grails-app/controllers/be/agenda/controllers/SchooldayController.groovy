@@ -2,7 +2,8 @@ package be.agenda.controllers
 
 import org.springframework.dao.DataIntegrityViolationException
 
-import be.agenda.AgendaUtils;
+import be.agenda.AgendaUtils
+import be.agenda.commands.UpdateEndSlotCommand
 import be.agenda.domain.ActivityHour
 import be.agenda.domain.ApplicationUser
 import be.agenda.domain.Course
@@ -124,11 +125,6 @@ class SchooldayController {
 			hourInstance = lessonHour
 		}
 		
-		
-		if (params.copylesson) {
-			hourInstance = copyIntoHour(hourInstance, Long.valueOf(params.copylesson))
-		}
-		
 		[hourInstance: hourInstance, selectedDate: hourInstance.schoolday.date]
     }
 	
@@ -247,17 +243,7 @@ class SchooldayController {
 		def schoolday = Schoolday.findByDateAndUser(date, session.user) ?: createSchoolday(date, session.user)
 		def hourInstance = null
 		def hourIndex = null
-		if (params.copylesson) {
-			log.debug "Nieuwe les aanmaken op basis van bestaande les ${params.copylesson}."
-			hourIndex = params.int('hourIndex')
-			def existingHour = schoolday.hours.find{it.beginSlot.slotIndex == hourIndex }
-			if (existingHour) {
-				hourInstance = new LessonHour(existingHour.properties)
-			} else {
-				hourInstance = new LessonHour(schoolday: schoolday, beginSlot: schoolday.availableSlots?.first(), endSlot: schoolday.availableSlots?.first())
-			}
-			hourInstance = copyIntoHour(hourInstance, Long.valueOf(params.copylesson))
-		} else if ('lesson'.equals(params.type)) {
+		if ('lesson'.equals(params.type)) {
 			log.debug "Nieuw lesuur aanmaken voor schooldag ${schoolday} van ${schoolday.availableSlots?.first().beginHour} tot ${schoolday.availableSlots?.first().endHour}."
 			hourInstance = new LessonHour(schoolday: schoolday, beginSlot: schoolday.availableSlots?.first(), endSlot: schoolday.availableSlots?.first())
 		} else if ('activity'.equals(params.type)) {
@@ -271,17 +257,44 @@ class SchooldayController {
 		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user])
 	}
 	
-	def updateEndSlot(Date date) {
-		log.info "hourId: ${params.hourId}, beginSlotId: ${params.beginSlot}, date= ${date}"
-		def hourInstance = null
+	def copyLessonIntoNew(Long id) {
+		def date = params.date ?: new Date()
+		def hourIndex = params.int('hourIndex')
+		def schoolday = Schoolday.findByDateAndUser(date, session.user) ?: createSchoolday(date, session.user)
+		def hourInstance = new LessonHour(schoolday: schoolday, beginSlot: schoolday.availableSlots?.first(), endSlot: schoolday.availableSlots?.first())
+		hourInstance = copyIntoHour(hourInstance, id)
+		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user])
+	}
+	
+	def copyLessonIntoExisting(Long id) {
+		def hourInstance = Hour.get(id)
+		
+		hourInstance = convertLessonPlaceHolderHourToLessonHourIfNecessary(hourInstance)
+		
+		if (params.copylesson) {
+			hourInstance = copyIntoHour(hourInstance, Long.valueOf(params.copylesson))
+		}
+		
+		render(view: "edit", model: [hourInstance: hourInstance, selectedDate: hourInstance.schoolday.date])
+	}
+
+	private LessonHour convertLessonPlaceHolderHourToLessonHourIfNecessary(def hourInstance) {
+		if (hourInstance instanceof LessonPlaceHolderHour && !(hourInstance instanceof LessonHour)) {
+			def lessonHour = new LessonHour(hourInstance.properties)
+			lessonHour.id = hourInstance.id
+			hourInstance = lessonHour
+		}
+		return hourInstance
+	}
+	
+	def updateEndSlot(UpdateEndSlotCommand cmd) {
+		log.info "hour: ${cmd.hour}, beginSlotId: ${cmd.slot}, date= ${cmd.date}"
 		def slots = null
-		def beginSlot = Slot.get(params.beginSlot)
-		if (params.hourId) {
-			def hour = Hour.get(params.hourId)
-			slots = hour.getAppropriateEndSlots(beginSlot)
+		if (cmd.hour) {
+			slots = cmd.hour.getAppropriateEndSlots(cmd.slot)
 		} else {
-			def day = Schoolday.findByDateAndUser(date, session.user) ?: createSchoolday(date:date, user:session.user)
-			slots = day.appropriateEndSlotsFor(beginSlot)
+			def day = Schoolday.findByDateAndUser(cmd.date, session.user) ?: createSchoolday(cmd.date, session.user)
+			slots = day.appropriateEndSlotsFor(cmd.slot)
 		}
 		
 		render g.select(optionKey:'id', optionValue:'endHour', from: slots,

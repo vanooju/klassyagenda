@@ -8,7 +8,7 @@
 		    		  optionKey="id"
 		    		  optionValue="beginHour"
 		    		  value="${hourInstance.beginSlot?.id}" 
-		    		  onchange="${remoteFunction(action:'updateEndSlot',update:'endSlot',params:"'beginSlot=' + this.value + '&hourId=${hourInstance.id}'")}"
+		    		  onchange="${remoteFunction(action:'updateEndSlot',update:'endSlot',params:"'slot.id=' + this.value + '&hour.id=${hourInstance.id}'")}"
 		    		  class="input-small" 
 		    		  id="beginSlot" />
 		</g:if>
@@ -18,7 +18,7 @@
 		    		  optionKey="id"
 		    		  optionValue="beginHour"
 		    		  value="${hourInstance.beginSlot?.id}" 
-		    		  onchange="${remoteFunction(action:'updateEndSlot',update:'endSlot',params:"'beginSlot=' + this.value + '&date_year=${hourInstance.schoolday.date.format("yyyy")}&date_month=${hourInstance.schoolday.date.format("MM")}&date_day=${hourInstance.schoolday.date.format("dd")}'")}"
+		    		  onchange="${remoteFunction(action:'updateEndSlot',update:'endSlot',params:"'slot.id=' + this.value + '&date_year=${hourInstance.schoolday.date.format("yyyy")}&date_month=${hourInstance.schoolday.date.format("MM")}&date_day=${hourInstance.schoolday.date.format("dd")}'")}"
 		    		  class="input-small" 
 		    		  id="beginSlot" />
 		</g:else> 

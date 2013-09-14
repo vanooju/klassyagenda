@@ -54,8 +54,8 @@
 
 						<div class="form-actions">
 							<g:submitButton class="btn btn-primary" name="submit"
-								value="Create" />
-							<g:submitButton class="btn" name="cancel" value="Cancel" />
+								value="${message(code: 'default.button.create.label')}" />
+							<g:submitButton class="btn" name="cancel" value="${message(code: 'default.button.cancel.label')}" />
 						</div>
 					</g:form>
 

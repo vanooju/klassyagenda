@@ -50,10 +50,10 @@
 			method="post" class="btn"
 			params="['course.id': selectedCourse?.id, 'coursePart.id': selectedCoursePart?.id, subject: subject, hourId: hourId, hourIndex: hourIndex, beginSlot: beginSlot, endSlot: endSlot, selectedDate_day: selectedDate?.format('dd'), selectedDate_month: selectedDate?.format('MM'), selectedDate_year: selectedDate?.format('yyyy'), selectedDate: 'date.struct']">Terug naar lijst</g:remoteLink>
 	<g:if test="${hourId && hourId != 'null'}">
-		<g:link class="btn btn-primary" method="get" action="edit" controller="schoolday" params="[copylesson: it.id, date_day: selectedDate?.format('dd'), date_month: selectedDate?.format('MM'), date_year: selectedDate?.format('yyyy'), date: 'date.struct']" id="${hourId}">Invoegen</g:link>
+		<g:link class="btn btn-primary" action="copyLessonIntoExisting" controller="schoolday" params="[copylesson: it.id, date_day: selectedDate?.format('dd'), date_month: selectedDate?.format('MM'), date_year: selectedDate?.format('yyyy'), date: 'date.struct']" id="${hourId}">Invoegen</g:link>
 	</g:if>
 	<g:else>
-		<g:link class="btn btn-primary" method="get" action="create" controller="schoolday" params="[copylesson: it.id, date_day: selectedDate?.format('dd'), date_month: selectedDate?.format('MM'), date_year: selectedDate?.format('yyyy'), date: 'date.struct', hourIndex: hourIndex]">Invoegen</g:link>
+		<g:link class="btn btn-primary" action="copyLessonIntoNew" controller="schoolday" id="${it.id}" params="[date_day: selectedDate?.format('dd'), date_month: selectedDate?.format('MM'), date_year: selectedDate?.format('yyyy'), date: 'date.struct', hourIndex: hourIndex]">Invoegen</g:link>
 	</g:else>
 </div>
 </body>
