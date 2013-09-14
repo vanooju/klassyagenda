@@ -2,10 +2,14 @@ package be.agenda.controllers
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import be.agenda.commands.AddCoursePartToCourseCommand
 import be.agenda.domain.Course
 import be.agenda.domain.CoursePart
+import be.agenda.services.CourseService
 
 class CoursePartController {
+	
+	CourseService courseService
 	
 	static layout = 'course'
 	
@@ -107,5 +111,18 @@ class CoursePartController {
 		def returnValue = CoursePart.get(params.coursePartId).otherTeacher
 		println "Returnvalue: " + returnValue
 		render returnValue as String
+	}
+	
+	def addCoursePart(AddCoursePartToCourseCommand cmd) {
+		log.info "Creating coursepart ${cmd.name} for course ${cmd.course.name}"
+		CoursePart coursePart = new CoursePart(course: cmd.course, name: cmd.name)
+		if (!coursePart.validate()) {
+			render(status: 409, template: "/course/coursePartForm", bean: coursePart)
+ 			return
+		}
+		def course = courseService.addCoursePartToCourse(cmd.course, coursePart)
+		log.info "Saved coursepart id: ${coursePart.id}"
+		render g.select(optionKey:'id', optionValue:'name', from: course.courseParts,
+			name: "coursePart.id", id: "coursePart", noSelection: ['null':'-Kies een vakonderdeel-'], value: coursePart.id)
 	}
 }

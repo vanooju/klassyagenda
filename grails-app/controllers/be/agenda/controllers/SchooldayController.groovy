@@ -18,8 +18,6 @@ import be.agenda.services.CourseService
 
 class SchooldayController {
 	
-	def CourseService courseService
-	
 	static defaultAction = 'show'
 	
 	static allowedMethods = [save: 'POST']
@@ -339,19 +337,6 @@ class SchooldayController {
 	
 	def showCoursePartModal() {
 		render(template: 'coursePartModal')
-	}
-	
-	def addCoursePart(AddCoursePartToCourseCommand cmd) {
-		log.info "Creating coursepart ${cmd.name} for course ${cmd.course.name}"
-		CoursePart coursePart = new CoursePart(course: cmd.course, name: cmd.name)
-		if (!coursePart.validate()) {
-			render(status: 409, template: "/course/coursePartForm", bean: coursePart)
- 			return
-		}
-		def course = courseService.addCoursePartToCourse(cmd.course, coursePart)
-		log.info "Saved coursepart id: ${coursePart.id}"
-		render g.select(optionKey:'id', optionValue:'name', from: course.courseParts,
-			name: "coursePart.id", id: "coursePart", noSelection: ['null':'-Kies een vakonderdeel-'], value: coursePart.id)
 	}
 	
 	def saveReminderAndTasks() {

@@ -70,7 +70,7 @@
 		<div id="coursePartModal" class="modal hide" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<g:formRemote name="coursePartForm"
-				url="[ controller: 'schoolday', action: 'addCoursePart']"
+				url="[ controller: 'coursePart', action: 'addCoursePart']"
 				update="[success: 'coursePart', failure: 'coursePartFormTemplate']"
 				onSuccess="\$('#coursePartModal').modal('hide')" class="form-horizontal">
 				<g:hiddenField name="course.id" value="${it?.course?.id}"
@@ -84,7 +84,7 @@
 				<div class="modal-footer">
 					<g:submitToRemote class="btn btn-primary" name="confirm"
 						value="Aanmaken"
-						url="[controller: 'schoolday', action: 'addCoursePart']"
+						url="[coursePart: 'schoolday', action: 'addCoursePart']"
 						update="[success: 'coursePart', failure: 'coursePartFormTemplate']"
 						onSuccess="\$('#coursePartModal').modal('hide')" />
 					<button type="button" class="btn" data-dismiss="modal"
