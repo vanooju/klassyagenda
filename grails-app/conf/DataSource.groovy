@@ -42,6 +42,7 @@ environments {
 
 				validationQuery = "select now()"
 			}
+			loggingSql = true
 		}
     }
     production {

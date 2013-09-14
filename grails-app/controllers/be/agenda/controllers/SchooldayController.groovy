@@ -3,6 +3,7 @@ package be.agenda.controllers
 import org.springframework.dao.DataIntegrityViolationException
 
 import be.agenda.AgendaUtils
+import be.agenda.commands.AddCoursePartToCourseCommand
 import be.agenda.commands.UpdateEndSlotCommand
 import be.agenda.domain.ActivityHour
 import be.agenda.domain.ApplicationUser
@@ -13,9 +14,11 @@ import be.agenda.domain.LessonHour
 import be.agenda.domain.LessonPlaceHolderHour
 import be.agenda.domain.Schedule
 import be.agenda.domain.Schoolday
-import be.agenda.domain.Slot
+import be.agenda.services.CourseService
 
 class SchooldayController {
+	
+	def CourseService courseService
 	
 	static defaultAction = 'show'
 	
@@ -266,6 +269,12 @@ class SchooldayController {
 		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user])
 	}
 	
+	/**
+	 * Copies the Lesson from the LessonHour identified by params.copylesson into the LessonHour
+	 * identified by id.
+	 * @param id The id of the LessonHour into which to copy the lesson from the existing lesson hour
+	 * @return
+	 */
 	def copyLessonIntoExisting(Long id) {
 		def hourInstance = Hour.get(id)
 		
@@ -332,17 +341,15 @@ class SchooldayController {
 		render(template: 'coursePartModal')
 	}
 	
-	def addCoursePart() {
-		def coursePart = new CoursePart(params)
-		def course = coursePart.course
-		
+	def addCoursePart(AddCoursePartToCourseCommand cmd) {
+		log.info "Creating coursepart ${cmd.name} for course ${cmd.course.name}"
+		CoursePart coursePart = new CoursePart(course: cmd.course, name: cmd.name)
 		if (!coursePart.validate()) {
 			render(status: 409, template: "/course/coursePartForm", bean: coursePart)
-			return
+ 			return
 		}
-		
-		course.addToCourseParts(coursePart)
-		course.save(flush:true)
+		def course = courseService.addCoursePartToCourse(cmd.course, coursePart)
+		log.info "Saved coursepart id: ${coursePart.id}"
 		render g.select(optionKey:'id', optionValue:'name', from: course.courseParts,
 			name: "coursePart.id", id: "coursePart", noSelection: ['null':'-Kies een vakonderdeel-'], value: coursePart.id)
 	}

@@ -12,5 +12,9 @@ class CoursePart {
 		name unique: 'course', blank: false
 	}
 	
+	static mapping = {
+		sort name: "asc"
+	}
+	
     String name
 }
