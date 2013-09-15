@@ -73,17 +73,19 @@
 				<g:message code="default.button.new.label" />
 			</button>
 		</div>
+
+		<g:hasErrors bean="${hourInstance}" field="course">
+			<g:eachError var="err" bean="${hourInstance}" field="course">
+				<span class="help-block"><g:message error="${err}" /></span>
+			</g:eachError>
+		</g:hasErrors>
+		<g:hasErrors bean="${hourInstance}" field="coursePart">
+			<g:eachError var="err" bean="${hourInstance}" field="coursePart">
+				<span class="help-block"><g:message error="${err}" /></span>
+			</g:eachError>
+		</g:hasErrors>
+	
 	</div>
-	<g:hasErrors bean="${hourInstance}" field="course">
-		<g:eachError var="err" bean="${hourInstance}" field="course">
-			<span class="help-inline"><g:message error="${err}" /></span>
-		</g:eachError>
-	</g:hasErrors>
-	<g:hasErrors bean="${hourInstance}" field="coursePart">
-		<g:eachError var="err" bean="${hourInstance}" field="coursePart">
-			<span class="help-inline"><g:message error="${err}" /></span>
-		</g:eachError>
-	</g:hasErrors>
 </div>
 
 <script>
@@ -119,5 +121,6 @@
 </script>
 
 <div id="lessonHourFormDetails">
-	<g:render template="lessonHourFormDetails" model="[hourInstance: hourInstance]" />
+	<g:render template="lessonHourFormDetails"
+		model="[hourInstance: hourInstance]" />
 </div>

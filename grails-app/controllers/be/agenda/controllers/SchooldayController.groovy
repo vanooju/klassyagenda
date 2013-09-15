@@ -21,8 +21,8 @@ class SchooldayController {
 	static defaultAction = 'show'
 	
 	static allowedMethods = [save: 'POST']
-
-    def save() {
+	
+	def saveLesson() {
 		def date = params.date
 		def hour = null
 		def schooldayInstance = Schoolday.findByDateAndUser(date, session.user)
@@ -45,34 +45,54 @@ class SchooldayController {
 				return
 			}
 			
-			log.debug "Replacing placeholder ${placeholder} with hour ${hour}"
-			log.debug "${schooldayInstance.hours.size()} hours before removing placeholder"
 			schooldayInstance.removeFromHours(placeholder)
-			log.debug "${schooldayInstance.hours.size()} hours after removing placeholder"
-			schooldayInstance.addToHours(hour)
-			log.debug "${schooldayInstance.hours.size()} hours after adding actual hour"
-			schooldayInstance.save(flush:true)
-		} else {	
-			if ("lesson".equals(params.type)) {
-				hour = new LessonHour(params)
-			} else if ("activity".equals(params.type)) {
-				hour = new ActivityHour(params)
-			}
+		} else {
+			hour = new LessonHour(params)
 			hour.schoolday = schooldayInstance
 			
 			if (!hour.validate()) {
-				render(view: "create", model: [hourInstance: hour])
+				render(view: "create", model: [hourInstance: hour, hourIndex: params.hourIndex, selectedDate: date, selectedUser: session.user])
 				return
 			}
-			
-			schooldayInstance.addToHours(hour)
-			schooldayInstance.save(flush:true)
 		}
 
-        flash.message = message(code: 'lesson.created.message', args: [hour.title, hour.beginHour, hour.endHour])
+		schooldayInstance.addToHours(hour)
+		schooldayInstance.save(flush:true)
+		
+		flash.message = message(code: 'lesson.created.message', args: [hour.title, hour.beginHour, hour.endHour])
 		flash.date = schooldayInstance.date
-        redirect(action: "show")
-    }
+		redirect(action: "show")
+	}
+	
+	def saveActivity() {
+		def date = params.date
+		def hour = null
+		def schooldayInstance = Schoolday.findByDateAndUser(date, session.user)
+		
+		if (params.cancel) {
+			redirect(action: "show", params: [date:'date.struct', date_day: date.format("dd"), date_month: date.format("MM"), date_year: date.format("yyyy")])
+			return
+		}
+		
+		if (!schooldayInstance) {
+			schooldayInstance = new Schoolday(date:date, user:session.user, schedule: Schedule.findByDateAndUser(date, session.user))
+		}
+
+		hour = new ActivityHour(params)
+		hour.schoolday = schooldayInstance
+		
+		if (!hour.validate()) {
+			render(view: "create", model: [hourInstance: hour, hourIndex: params.hourIndex, selectedDate: date, selectedUser: session.user])
+			return
+		}
+		
+		schooldayInstance.addToHours(hour)
+		schooldayInstance.save(flush:true)
+
+		flash.message = message(code: 'activity.created.message', args: [hour.title, hour.beginHour, hour.endHour])
+		flash.date = schooldayInstance.date
+		redirect(action: "show")
+	}
 
     def show() {
 		println "params.date = ${params.date}"
@@ -185,8 +205,11 @@ class SchooldayController {
 		}
 
         schoolday.save()
-
-		flash.message = message(code: 'lesson.updated.message', args: [hourInstance.title, hourInstance.beginHour, hourInstance.endHour])
+		if (hourInstance instanceof LessonHour) {
+			flash.message = message(code: 'lesson.updated.message', args: [hourInstance.title, hourInstance.beginHour, hourInstance.endHour])
+		} else {
+			flash.message = message(code: 'activity.updated.message', args: [hourInstance.title, hourInstance.beginHour, hourInstance.endHour])
+		}
         redirect(action: "show", params: [date:'date.struct', date_day: hourInstance.schoolday.date.format("dd"), date_month: hourInstance.schoolday.date.format("MM"), date_year: hourInstance.schoolday.date.format("yyyy")])
     }
 
@@ -239,22 +262,19 @@ class SchooldayController {
 		return schooldayInstance
 	}
 	
-	def create() {
+	def createLesson() {
 		def date = params.date ?: new Date()
 		def schoolday = Schoolday.findByDateAndUser(date, session.user) ?: createSchoolday(date, session.user)
-		def hourInstance = null
-		def hourIndex = null
-		if ('lesson'.equals(params.type)) {
-			log.debug "Nieuw lesuur aanmaken voor schooldag ${schoolday} van ${schoolday.availableSlots?.first().beginHour} tot ${schoolday.availableSlots?.first().endHour}."
-			hourInstance = new LessonHour(schoolday: schoolday, beginSlot: schoolday.availableSlots?.first(), endSlot: schoolday.availableSlots?.first())
-		} else if ('activity'.equals(params.type)) {
+		log.debug "Nieuw lesuur aanmaken voor schooldag ${schoolday} van ${schoolday.availableSlots?.first().beginHour} tot ${schoolday.availableSlots?.first().endHour}."
+		def hourInstance = new LessonHour(schoolday: schoolday, beginSlot: schoolday.availableSlots?.first(), endSlot: schoolday.availableSlots?.first())
+		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user])
+	}
+	
+	def createActivity() {
+		def date = params.date ?: new Date()
+		def schoolday = Schoolday.findByDateAndUser(date, session.user) ?: createSchoolday(date, session.user)
 		log.debug "Nieuwe activiteit aanmaken voor schooldag ${schoolday} van ${schoolday.availableSlots?.first().beginHour} tot ${schoolday.availableSlots?.first().endHour}."
-			hourInstance = new ActivityHour(schoolday: schoolday,, beginSlot: schoolday.availableSlots?.first(), endSlot: schoolday.availableSlots?.first())
-		} else {
-		log.debug "Nieuw lesuur aanmaken voor schooldag ${schoolday} op basis van uur in lessenrooster ${schoolday.hours.find{it.beginSlot.slotIndex == hourIndex }}."
-			hourIndex = params.int('hourIndex')
-			hourInstance = new LessonHour(schoolday.hours.find{it.beginSlot.slotIndex == hourIndex }.properties)
-		}
+		def hourInstance = new ActivityHour(schoolday: schoolday,, beginSlot: schoolday.availableSlots?.first(), endSlot: schoolday.availableSlots?.first())
 		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user])
 	}
 	

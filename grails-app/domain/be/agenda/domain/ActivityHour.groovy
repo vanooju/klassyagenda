@@ -8,6 +8,10 @@ class ActivityHour extends SchooldayHour {
 		description length: 2000
 	}
 	
+	static constraints = {
+		subject blank: false
+	}
+	
 	String subject
 	String description
 	

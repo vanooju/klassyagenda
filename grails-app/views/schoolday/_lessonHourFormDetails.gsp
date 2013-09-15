@@ -6,12 +6,12 @@
 	<div class="controls">
 		<g:textField name="subject" value="${hourInstance.subject}"
 			class="input-xxlarge" />
+		<g:hasErrors bean="${hourInstance}" field="subject">
+			<g:eachError var="err" bean="${hourInstance}" field="subject">
+				<span class="help-block"><g:message error="${err}" /></span>
+			</g:eachError>
+		</g:hasErrors>
 	</div>
-	<g:hasErrors bean="${hourInstance}" field="subject">
-		<g:eachError var="err" bean="${hourInstance}" field="subject">
-			<span class="help-inline"><g:message error="${err}" /></span>
-		</g:eachError>
-	</g:hasErrors>
 </div>
 
 <div class="control-group">

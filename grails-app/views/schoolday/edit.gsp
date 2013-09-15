@@ -37,11 +37,10 @@
 					<g:if test="${hourInstance instanceof ActivityHour}">
 						<g:render template="activityHourForm" />
 					</g:if>
-
 					<div class="form-actions">
-							<g:submitButton class="btn btn-primary" name="submit"
-								value="${message(code: 'default.button.update.label')}" />
-							<g:submitButton class="btn" name="cancel" value="${message(code: 'default.button.cancel.label')}" />
+						<g:actionSubmit action="update" class="btn btn-primary" name="submit"
+							value="${message(code: 'default.button.update.label')}" />
+						<g:submitButton class="btn" name="cancel" value="${message(code: 'default.button.cancel.label')}" />
 					</div>
 				</g:form>
 

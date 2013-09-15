@@ -9,8 +9,8 @@
 			  </g:each>
 			<g:if test="${schooldayInstance.availableSlots && schooldayInstance.availableSlots.size() > 0}">
 			  <li class="divider"></li>
-			  <li><g:link action="create" params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct', type: 'lesson']">Nieuwe les</g:link></li>
-			  <li><g:link action="create" params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct', type: 'activity']">Nieuwe activiteit</g:link></li>
+			  <li><g:link action="createLesson" params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct']">Nieuwe les</g:link></li>
+			  <li><g:link action="createActivity" params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct']">Nieuwe activiteit</g:link></li>
 			  </g:if>
 			</ul>
 		</div>		  

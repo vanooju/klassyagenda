@@ -33,7 +33,7 @@
 					</span>
 				</g:if>
 				<g:else>
-					<g:form action="save" class="form-horizontal">
+					<g:form class="form-horizontal">
 						<g:hiddenField name="date_year"
 							value="${hourInstance.schoolday.date.format('yyyy')}" />
 						<g:hiddenField name="date_month"
@@ -47,16 +47,22 @@
 								<g:hiddenField name="hourIndex" value="${hourIndex}" />
 							</g:if>
 							<g:render template="lessonHourForm" />
+							
+							<div class="form-actions">
+								<g:actionSubmit class="btn btn-primary" name="submit" action="saveLesson"
+									value="${message(code: 'default.button.create.label')}" />
+								<g:submitButton class="btn" name="cancel" value="${message(code: 'default.button.cancel.label')}" />
+							</div>
 						</g:if>
 						<g:if test="${hourInstance instanceof ActivityHour}">
 							<g:render template="activityHourForm" />
+							
+							<div class="form-actions">
+								<g:actionSubmit class="btn btn-primary" name="submit" action="saveActivity"
+									value="${message(code: 'default.button.create.label')}" />
+								<g:submitButton class="btn" name="cancel" value="${message(code: 'default.button.cancel.label')}" />
+							</div>
 						</g:if>
-
-						<div class="form-actions">
-							<g:submitButton class="btn btn-primary" name="submit"
-								value="${message(code: 'default.button.create.label')}" />
-							<g:submitButton class="btn" name="cancel" value="${message(code: 'default.button.cancel.label')}" />
-						</div>
 					</g:form>
 
 					<g:formRemote url="[controller: 'lesson', action: 'searchModal']"

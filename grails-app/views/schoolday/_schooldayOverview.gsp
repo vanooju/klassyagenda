@@ -36,7 +36,12 @@
 				<tr
 					class="${hourInstance?.beginSlot?.slotIndex == hour?.beginSlot?.slotIndex ? "info" : ""}">
 					<td>
-						<i class="${hour instanceof ActivityHour ? 'icon-globe' : 'icon-book'}"></i>
+						<g:if test="${hour instanceof ActivityHour}">
+							<i class="icon-globe" title="${g.message(code:"activityHour.label")}"></i>
+						</g:if>
+						<g:else>
+							<i class="icon-book" title="${g.message(code:"be.agenda.domain.LessonHour.label")}"></i>
+						</g:else>
 					</td>
 					<td style="text-align: right;">
 						${hour.beginHour}
@@ -54,10 +59,10 @@
 	<g:if
 		test="${schooldayInstance?.availableSlots && schooldayInstance?.availableSlots.size() > 0 && (selectedUser == session.user)}">
 		<ul class="nav nav-list">
-		<li><g:link action="create"
-				params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct', type: 'lesson']">Nieuwe les</g:link></li>
-		<li><g:link action="create"
-				params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct', type: 'activity']">Nieuwe activiteit</g:link></li>
+		<li><g:link action="createLesson"
+				params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct']">Nieuwe les</g:link></li>
+		<li><g:link action="createActivity"
+				params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct']">Nieuwe activiteit</g:link></li>
 			</ul>
 	</g:if>
 	<sec:ifAnyGranted roles="PRINCIPAL, ADMIN">
