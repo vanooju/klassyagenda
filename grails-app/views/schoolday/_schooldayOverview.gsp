@@ -59,11 +59,19 @@
 	<g:if
 		test="${schooldayInstance?.availableSlots && schooldayInstance?.availableSlots.size() > 0 && (selectedUser == session.user)}">
 		<ul class="nav nav-list">
-		<li><g:link action="createLesson"
-				params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct']">Nieuwe les</g:link></li>
-		<li><g:link action="createActivity"
-				params="[date_year: schooldayInstance.date.format('yyyy'), date_month: schooldayInstance.date.format('MM'), date_day: schooldayInstance.date.format('dd'), date: 'date.struct']">Nieuwe activiteit</g:link></li>
-			</ul>
+			<g:if test="${schooldayInstance.id}">
+			<li><g:link action="createLesson"
+					params="['schoolday.id': schooldayInstance.id]">Nieuwe les</g:link></li>
+			<li><g:link action="createActivity"
+					params="['schoolday.id': schooldayInstance.id]">Nieuwe activiteit</g:link></li>
+			</g:if>
+			<g:else>
+			<li><g:link action="createLesson"
+					params="[date: schooldayInstance.date.format('dd/MM/yyyy')]">Nieuwe les</g:link></li>
+			<li><g:link action="createActivity"
+					params="[date: schooldayInstance.date.format('dd/MM/yyyy')]">Nieuwe activiteit</g:link></li>
+			</g:else>
+		</ul>
 	</g:if>
 	<sec:ifAnyGranted roles="PRINCIPAL, ADMIN">
 		<li><g:link action="list" controller="user">Toon leerkrachten</g:link></li>

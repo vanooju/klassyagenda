@@ -4,6 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 import be.agenda.AgendaUtils
 import be.agenda.commands.AddCoursePartToCourseCommand
+import be.agenda.commands.CreateHourCommand;
 import be.agenda.commands.UpdateEndSlotCommand
 import be.agenda.domain.ActivityHour
 import be.agenda.domain.ApplicationUser
@@ -256,26 +257,23 @@ class SchooldayController {
 		log.info "Nieuwe schooldag voor gebruiker ${user} en datum ${date}"
 		def schooldayInstance = new Schoolday(date:date, user:user, schedule: Schedule.findByDateAndUser(date, user))
 		def scheduleDay = schooldayInstance.schedule?.getDay(schooldayInstance.dayOfWeek)
-		scheduleDay?.hours.toList().each {
+		scheduleDay?.hours?.toList().each {
 			schooldayInstance.addToHours(new LessonPlaceHolderHour(it, schooldayInstance))
 		}
 		return schooldayInstance
 	}
 	
-	def createLesson() {
-		def date = params.date ?: new Date()
-		def schoolday = Schoolday.findByDateAndUser(date, session.user) ?: createSchoolday(date, session.user)
-		log.debug "Nieuw lesuur aanmaken voor schooldag ${schoolday} van ${schoolday.availableSlots?.first().beginHour} tot ${schoolday.availableSlots?.first().endHour}."
+	//TODO http://stackoverflow.com/questions/2871977/binding-a-grails-date-from-params-in-a-controller
+	def createLesson(CreateHourCommand cmd) {
+		def schoolday = cmd.schoolday ?: createSchoolday(cmd.date ?: new Date(), session.user)
 		def hourInstance = new LessonHour(schoolday: schoolday, beginSlot: schoolday.availableSlots?.first(), endSlot: schoolday.availableSlots?.first())
-		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user])
+		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: schoolday.date, selectedUser: session.user])
 	}
 	
-	def createActivity() {
-		def date = params.date ?: new Date()
-		def schoolday = Schoolday.findByDateAndUser(date, session.user) ?: createSchoolday(date, session.user)
-		log.debug "Nieuwe activiteit aanmaken voor schooldag ${schoolday} van ${schoolday.availableSlots?.first().beginHour} tot ${schoolday.availableSlots?.first().endHour}."
+	def createActivity(CreateHourCommand cmd) {
+		def schoolday = cmd.schoolday ?: createSchoolday(cmd.date ?: new Date(), session.user)
 		def hourInstance = new ActivityHour(schoolday: schoolday,, beginSlot: schoolday.availableSlots?.first(), endSlot: schoolday.availableSlots?.first())
-		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: date, selectedUser: session.user])
+		render(view: "create", model: [hourInstance: hourInstance, hourIndex:params.hourIndex, selectedDate: schoolday.date, selectedUser: session.user])
 	}
 	
 	def copyLessonIntoNew(Long id) {

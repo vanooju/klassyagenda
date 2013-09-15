@@ -1,5 +1,7 @@
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
+import be.agenda.propertyeditor.CustomDateEditorRegistrar
+
 // Place your Spring DSL code here
 beans = {
 	userDetailsService(be.agenda.authentication.UserDetailsService)
@@ -14,4 +16,6 @@ beans = {
 		redirectStrategy = ref('redirectStrategy')
 		principalUrl = "/agenda/user/list"
 	}
+	
+	customPropertyEditorRegistrar(CustomDateEditorRegistrar)
 }
