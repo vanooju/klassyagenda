@@ -16,10 +16,10 @@ class BootStrap {
 
 			def school = new School(name: 'Sint-Romboutscollege').save(flush: true)
 
-			def josUser = new ApplicationUser(username: 'jos', enabled: true, password: 'jos', firstName: 'Jos', lastName: 'Peeters', school: school)
-			def miekeUser = new ApplicationUser(username: 'mieke', enabled: true, password: 'mieke', firstName: 'Mieke', lastName: 'Jansens', school: school)
-			josUser.save(flush: true)
-			miekeUser.save(flush: true)
+			def josUser = new ApplicationUser(username: 'jos', enabled: true, password: 'jos', firstName: 'Jos', lastName: 'Peeters', school: school, emailAddress: 'jos@gmail.com')
+			def miekeUser = new ApplicationUser(username: 'mieke', enabled: true, password: 'mieke', firstName: 'Mieke', lastName: 'Jansens', school: school, emailAddress: 'mieke@gmail.com')
+			josUser.save(flush: true, failOnError: true)
+			miekeUser.save(flush: true, failOnError: true)
 
 			ApplicationUserRole.create josUser, adminRole, true
 			ApplicationUserRole.create miekeUser, userRole, true

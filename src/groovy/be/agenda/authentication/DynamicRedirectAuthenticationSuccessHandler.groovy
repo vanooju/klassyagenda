@@ -3,6 +3,7 @@ package be.agenda.authentication
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 class DynamicRedirectAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {

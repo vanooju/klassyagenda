@@ -149,9 +149,9 @@ log4j = {
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'be.agenda.ApplicationUser'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'be.agenda.ApplicationUserRole'
-grails.plugins.springsecurity.authority.className = 'be.agenda.Role'
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'be.agenda.domain.ApplicationUser'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'be.agenda.domain.ApplicationUserRole'
+grails.plugins.springsecurity.authority.className = 'be.agenda.domain.Role'
 grails.plugins.springsecurity.securityConfigType = "Annotation"
 
 grails.resources.modules = {
